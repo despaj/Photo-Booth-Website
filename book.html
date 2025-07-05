@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+JP:wght@200..900&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <title>Solace Studios | Book Now</title>
+    <link rel="stylesheet" href="book.css">
+</head>
+<body>
+    <nav class="navbar">
+        <img src="FINALlabel.svg" alt="SOLACE STUDIO label" class="navbar-logo">
+        <ul>
+            <li><a href="home.html">HOME</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="book.html">BOOK NOW</a></li>
+        </ul>
+    </nav>
+
+    <div class="booking-section">
+        <div class="booking-form-wrapper">
+            <h2>Book your Session</h2>
+            <form id="bookingForm">
+                <label for="name">Full name:</label>
+                <input type="text" id="name" required>
+
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" required>
+
+                <label for="eventType">Event Type:</label>
+                <input type="text" id="eventType" required>
+
+                <label for="eventDate">Event Date:</label>
+                <input type="datetime-local" id="eventDate" required>
+
+                <label for="loc">Event Location:</label>
+                <input type="text" id="loc" required>
+
+                <button type="submit" class="submit-btn">BOOK NOW</button>
+            </form>
+        </div>
+
+        <div class="booking-image">
+            <img src="sample.svg" alt="photobooth sample">
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Solace Studios. All rights reserved.</p>
+            <p>
+            <a href="mailto:solacestudios@gmail.com">Contact Us</a> |
+            <a href="privpolicy.html">Privacy Policy</a>
+            </p>    
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("bookingForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const eventType = document.getElementById("eventType").value;
+            const eventDate = document.getElementById("eventDate").value;
+            const location = document.getElementById("loc").value;
+
+            if (!name || !email || !eventType || !eventDate || !location) {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            localStorage.setItem("name", name);
+            localStorage.setItem("email", email);
+            localStorage.setItem("eventType", eventType);
+            localStorage.setItem("eventDate", eventDate);
+            localStorage.setItem("loc", location);
+
+            window.location.href = "displaybooking.html";
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const links = document.querySelectorAll('.navbar ul li a');
+            const currentPage = window.location.pathname.split("/").pop();
+
+            links.forEach(link => {
+            const linkPage = link.getAttribute("href");
+            if (linkPage === currentPage) {
+                link.classList.add("active");
+            }
+            });
+        });
+    </script>
+
+</body>
+</html>
